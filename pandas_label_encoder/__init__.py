@@ -24,17 +24,18 @@ class Encoder:
     but with higher performance.
     '''
     __name__ = 'Encoder'
-    __version__ = '1.0.0'
-    __categories = None
+    __version__ = '1.0.2'
 
     def __init__(
         self,
         x: Union[list, Series, Categorical, ndarray, None] = None,
     ):
-        if x:
-            self.__categories: Categorical.categories = (
-                Categorical(x).categories
-            )
+        
+        self.__categories: Categorical.categories = (
+            Categorical(x).categories
+            if x
+            else None
+        )
 
     def fit(
         self,
